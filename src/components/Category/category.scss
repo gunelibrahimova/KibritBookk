@@ -1,0 +1,111 @@
+#yazarlar {
+    padding-bottom: 50px;
+    margin: 0%;
+    padding: 0%;
+
+    .top {
+        text-align: center;
+
+        h1 {
+            font-size: 42px;
+            margin-top: 0.9375rem;
+            margin-bottom: 0.9375rem;
+            // font-family: "Crimson Text", serif;
+            font-weight: bold;
+            border-bottom: 2px solid black;
+            
+            font-family: var(--primaryHeadlineFont), Arial, Helvetica, sans-serif;
+
+        }
+    }
+
+    .bottom {
+        // margin-top: 30px;
+        width: 100%;
+        margin: auto;
+
+        .box {
+            cursor: pointer;
+            position: relative;
+            border: 5px solid white;
+
+            .image {
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    transition: 0.3s ease-in-out;
+                    height: 600px;
+                }
+            }
+
+            &:hover {
+                .image {
+                    img {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+
+            .text {
+                position: absolute;
+                top: 40%;
+                left: 40%;
+
+                h4 {
+                    font-size: 1.5rem;
+                    margin-bottom: 0.9375rem;
+                    font-family: "Crimson Text", serif;
+                    font-weight: bolder;
+                    color: rgb(255, 0, 76);
+                }
+
+                span {
+                    font-family: "DM Sans", sans-serif;
+                    ;
+                    margin-left: -50px;
+                    color: white;
+                    font-size: .6875rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    padding: 16px 30px 16px 30px;
+                    background-color: #3dcc68;
+                    transition: 0.3s ease-in-out;
+
+                    &:hover {
+                        opacity: 0.6;
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+    #homepopular {
+        .top {
+            text-align: center;
+
+            h2 {
+                font-size: 32px;
+                margin-bottom: 0px;
+            }
+
+            p {
+                width: 100%;
+            }
+        }
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+@media(min-width: 576px) and (max-width: 768px) {}
+
+// Large devices (desktops, 992px and up)
+@media(min-width: 768px) and (max-width: 992px) {}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (max-width: 1200px) {}

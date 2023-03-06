@@ -1,0 +1,81 @@
+#allBook {
+    .book {
+      
+        .box {
+            padding: 15px 10px;
+            transition: 0.3s ease-in-out;
+            cursor: pointer;
+
+            .text {
+                .box1 {
+                    display: block;
+
+                    &.super {
+                        font-family: "DM Sans", sans-serif;
+                        font-size: 14px;
+                        font-weight: 600;
+                        transition: 0.3s ease-in-out;
+                        margin-top: 10px;
+
+                        &:hover {
+                            color: #ef4626;
+                        }
+                    }
+                }
+
+                .sebet {
+                    background-color: #45a963;
+                    color: white;
+                    padding: 6px 10px;
+                    line-height: 1.2;
+                    font-size: 14px;
+                    display: inline-block;
+                }
+            }
+
+            .image {
+                position: relative;
+
+                img {
+                    height: auto;
+                    max-width: 100%;
+                }
+
+                .icons {
+                    position: absolute;
+                    top: 10%;
+                    right: 0%;
+
+                    .icon {
+                        background-color: white;
+                        padding: 10px;
+                        margin-bottom: 9px;
+                        border: 1px solid rgb(214, 213, 213);
+                        opacity: 0;
+                        visibility: hidden;
+                        transform: translateX(30px);
+                        transition: 0.3s ease-in-out;
+                        color: black;
+
+                        &:hover {
+                            background-color: #ef4626;
+                            color: white;
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                .image {
+                    .icons {
+                        .icon {
+                            opacity: 1;
+                            visibility: visible;
+                            transform: translateX(0px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
