@@ -14,14 +14,9 @@ import { addToCart, fetchBook } from "../../redux/Reducer/cartSlice";
 import Pagination from "../Pagination/Pagination";
 
 const AllBook = () => {
-
-
     const dispatch = useDispatch()
-
-    const data = useSelector(state => state.cart.data.message)
-
-    console.log(data);
-
+    const data = useSelector(state => state.cart.data.message);
+    const[query,setQuery] = useState("");
     useEffect(() => {
         dispatch(fetchBook())
     }, [])
@@ -37,13 +32,15 @@ const AllBook = () => {
     return (
         <div id="allBook">
             <div className="container">
+                <input type='text' placeholder="Search.." className="search" onChange={(e) => setQuery(e.target.value)}/>
                 <div className="book">
                     <div className="row">
                         {data &&
-                            data.map((book) => (
+                           data.filter((book) => book.name.toLowerCase().includes(query) || book.genreName.toLowerCase().includes(query) || book.authorName.toLowerCase().includes(query))
+                            .map((book) => (
                                 <div className="col-lg-4">
                                     <div className="box">
-                                        <div className="image">
+                                        <div className="image" key={book.id}>
                                             <Link to="/book">
                                                 <img
                                                     src={book.photoURL} width="100%"
@@ -62,6 +59,8 @@ const AllBook = () => {
                                         </div>
                                         <div className="text">
                                             <span className="box1 super">{book.name}</span>
+                                            <span>Genre : {book.genreName}</span> <br />
+                                            <span>Yazar adi : {book.authorName}</span>
                                             <span className="box1 number">{book.price}₼</span>
                                             <span className="sebet" onClick={() => {
                                                 dispatch(addToCart(book));
