@@ -7,10 +7,6 @@ import './cart.scss'
 const Cart = () => {
 
     const { cart, totalQuantity, totalPrice } = useSelector((state) => state.cart)
-
-    console.log(cart);
-
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -101,7 +97,7 @@ const Cart = () => {
                                         <tbody>
                                             <tr>
                                                 <th>Total Quantity</th>
-                                                <td>{totalQuantity && totalQuantity< 0 ? 0 : totalQuantity}</td>
+                                                <td>{totalQuantity && totalQuantity < 0 ? 0 : totalQuantity}</td>
                                             </tr>
                                             <tr>
                                                 <th>Total</th>

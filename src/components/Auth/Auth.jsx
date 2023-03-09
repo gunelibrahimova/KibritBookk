@@ -74,7 +74,7 @@ const Auth = () => {
           title: 'Bir xəta baş verdi.',
           text: 'Emailiniz və ya şifrəniz yanlışdır!'
         })
-        navigate("/account")
+        navigate("/auth")
       }
     }
   }, [userInfo])
