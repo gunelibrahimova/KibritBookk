@@ -14,7 +14,6 @@ const initialState = {
 
 export const fetchBook = createAsyncThunk("fetchBook", async () => {
     const response = await axios.get("https://localhost:44351/api/Book/bookList");
-    console.log(response.data);
     return response.data;
 });
 

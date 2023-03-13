@@ -15,7 +15,6 @@ import Category from '../components/Category/Category'
 const Home = () => {
   return (
     <div>
-        {/* <Header/> */}
         <Slider/>
         <Category />
         <Publisher />
