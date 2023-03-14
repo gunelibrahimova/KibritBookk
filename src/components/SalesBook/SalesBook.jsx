@@ -57,7 +57,7 @@ const SalesBook = () => {
                         <div className="col-lg-12">
                           <div className="box">
                             <div className="image">
-                              <Link to="/book">
+                              <Link to={'/book/' + book.id}>
                                 <img
                                   src={book.photoURL}
                                   alt=""

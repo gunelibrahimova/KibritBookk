@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getProductsFailure, getProductsStart, getProductsSuccess } from "../../redux/Reducer/productsSlice";
 import "./language.scss";
 
@@ -28,15 +30,18 @@ const Language = () => {
           <div className="bottom">
             <div className="row">
               {
+                products && 
                 products.map(e => (
-                  <div className="col-lg-3">
-                    <img
-                      className="pub-image"
-                      src={e.photo}
-                      alt=""
-                      width="100"
-                      height="100"
-                    />
+                  <div className="col-lg-3" key={e.id}>
+                    <Link to={'/dil/' + e.id}>
+                      <img
+                        className="pub-image"
+                        src={e.photo}
+                        alt=""
+                        width="100"
+                        height="100"
+                      />
+                    </Link>
                     <h6>{e.name}</h6>
                   </div>
                 ))

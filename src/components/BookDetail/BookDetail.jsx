@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./bookdetail.scss";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -12,6 +12,9 @@ import "swiper/scss";
 import "swiper/scss/pagination";
 import { Navigation, Scrollbar, A11y } from "swiper";
 import ReadMoreReact from "read-more-react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {BASE_URL} from '../../api/config'
 
 const colors = {
   orange: "#FFBA5A",
@@ -19,10 +22,13 @@ const colors = {
 };
 
 const BookDetail = () => {
+  const { id } = useParams();
+  const [book, setBooks] = useState([]);
   const stars = Array(5).fill(0);
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const [value, setValue] = useState("1");
+  const dispatch = useDispatch();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -37,6 +43,15 @@ const BookDetail = () => {
     setHoverValue(undefined);
   };
 
+  const getBooks = async () => {
+    await fetch(BASE_URL + "book/getbyid/" + id)
+      .then((res) => res.json())
+      .then((data) => setBooks(data.message));
+  };
+  useEffect(() => {
+    getBooks();
+  }, [dispatch]);
+
   return (
     <div id="bookdetail">
       <div className="container">
@@ -45,7 +60,7 @@ const BookDetail = () => {
             <div className="image">
               <img
                 role="presentation"
-                src="https://cdn.pixabay.com/photo/2016/01/26/10/56/table-1162230_960_720.jpg"
+                src={book.photoURL}
                 alt=""
               />
             </div>

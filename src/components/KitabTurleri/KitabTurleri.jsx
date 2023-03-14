@@ -8,10 +8,11 @@ import { Navigation, Scrollbar, A11y } from "swiper";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getGenreFailure, getGenreStart, getGenreSuccess } from "../../redux/Reducer/genreSlice";
+import { Link } from "react-router-dom";
 
 const KitabTurleri = () => {
   const dispatch = useDispatch();
-  const {genre} = useSelector(state => state.genre);
+  const { genre } = useSelector(state => state.genre);
   const isLoading = useSelector(state => state.genre.isLoading);
   const error = useSelector(state => state.genre.error);
 
@@ -43,29 +44,29 @@ const KitabTurleri = () => {
                 genre &&
                 genre.map(e => (
                   <SwiperSlide>
-                <div className="containerr">
-                  <div className="row align-items-center">
-                    <div className="col-lg-12">
-                      <div className="box">
-                        <div className="image">
-                          <img
-                            className="pub-image"
-                            src={e.photo}
-                            alt=""
-                            width="100"
-                            height="100"
-                          />
-                          <h6>{e.name}</h6>
+                    <div className="containerr">
+                      <div className="row align-items-center">
+                        <div className="col-lg-12" key={e.id}>
+                          <div className="box">
+                            <div className="image">
+                              <Link to={'/janr/' + e.id}>
+                                <img
+                                  className="pub-image"
+                                  src={e.photo}
+                                  alt=""
+                                  width="100"
+                                  height="100"
+                                />
+                              </Link>
+                              <h6>{e.name}</h6>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </SwiperSlide>
+                  </SwiperSlide>
                 ))
               }
-              
-              
             </Swiper>
           </div>
         </div>

@@ -6,6 +6,7 @@ import "swiper/scss";
 import "swiper/scss/pagination";
 import { Navigation, Scrollbar, A11y } from "swiper";
 import { BASE_URL } from "../../api/config";
+import { Link } from "react-router-dom";
 
 const Publisher = () => {
   const [yayinevi, setYayinevi] = useState([]);
@@ -41,16 +42,18 @@ const Publisher = () => {
                   <SwiperSlide>
                     <div className="containerr">
                       <div className="row align-items-center">
-                        <div className="col-lg-12">
+                        <div className="col-lg-12" key={e.id}>
                           <div className="box">
                             <div className="image">
-                              <img
-                                className="pub-image"
-                                src={e.photoURL}
-                                alt=""
-                                width="100"
-                                height="100"
-                              />
+                              <Link to={'/yayinevi/' + e.id}>
+                                <img
+                                  className="pub-image"
+                                  src={e.photoURL}
+                                  alt=""
+                                  width="100"
+                                  height="100"
+                                />
+                              </Link>
                             </div>
                           </div>
                         </div>
@@ -59,10 +62,6 @@ const Publisher = () => {
                   </SwiperSlide>
                 ))
               }
-
-
-
-
             </Swiper>
           </div>
         </div>
