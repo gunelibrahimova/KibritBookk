@@ -13,8 +13,9 @@ import "swiper/scss/pagination";
 import { Navigation, Scrollbar, A11y } from "swiper";
 import ReadMoreReact from "read-more-react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import {BASE_URL} from '../../api/config'
+import { useDispatch, useSelector } from "react-redux";
+import { BASE_URL } from '../../api/config'
+import { decreaseItemQuantity, getCartTotal, increaseItemQuantity } from "../../redux/Reducer/cartSlice";
 
 const colors = {
   orange: "#FFBA5A",
@@ -24,6 +25,8 @@ const colors = {
 const BookDetail = () => {
   const { id } = useParams();
   const [book, setBooks] = useState([]);
+
+  console.log(book);
   const stars = Array(5).fill(0);
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
@@ -43,6 +46,14 @@ const BookDetail = () => {
     setHoverValue(undefined);
   };
 
+  const { cart, totalQuantity, totalPrice } = useSelector((state) => state.cart)
+
+
+  useEffect(() => {
+    dispatch(getCartTotal());
+  }, [cart]);
+
+
   const getBooks = async () => {
     await fetch(BASE_URL + "book/getbyid/" + id)
       .then((res) => res.json())
@@ -59,6 +70,7 @@ const BookDetail = () => {
           <div className="col-lg-7">
             <div className="image">
               <img
+                className="mainImage"
                 role="presentation"
                 src={book.photoURL}
                 alt=""
@@ -84,39 +96,58 @@ const BookDetail = () => {
           </div>
           <div className="col-lg-5">
             <div className="text">
-              <h1>Kitabin adi</h1>
-              <p className="price">qiymeti AZN</p>
-              <div className="p">
+              <div className="title">
+                <h1>{book.name}</h1>
+                <hr />
+              </div>
+              <ul>
+                <li>
+                  <div className="d-flex">
+                    <span>
+                      <del> {book.price} AZN</del>
+                    </span>
+                    <span style={{ marginLeft: "10px" }}>
+                      {book.salePrice} AZN
+                    </span>
+                    {book.isStock == true ? (
+                      <div className="stock">
+                        <p>Stock'da var</p>
+                      </div>
+                    ) : (
+                      <div className="stock">
+                        <p>Stock'da yoxdur</p>
+                      </div>
+                    )}
+                  </div>
+                </li>
+              </ul>
+              <div className="parametrs">
                 <span>
-                  <strong>Yayin evi:</strong> adi
+                  <strong>Yayin evi: </strong> {book.publisherName}
                 </span>{" "}
                 <br />
                 <span>
-                  <strong>Yazar:</strong> adi
+                  <strong>Yazar: </strong> {book.authorName}
                 </span>{" "}
                 <br />
                 <span>
-                  <strong>Tercumeci :</strong> adi
+                  <strong>Tercumeci :</strong> {book.translator}
                 </span>{" "}
                 <br />
                 <span>
-                  <strong>Sefiya sayi:</strong> 123
+                  <strong>Sehifa sayi:</strong> 123
                 </span>{" "}
                 <br />
                 <span>
-                  <strong>Yayin tarixi :</strong> tarix
+                  <strong>Kitabin dili :</strong> {book.languageName}
                 </span>{" "}
                 <br />
                 <span>
-                  <strong>Kitabin dili :</strong> dil
+                  <strong>Cild tipi:</strong> {book.bookCover}
                 </span>{" "}
                 <br />
                 <span>
-                  <strong>Cild tipi:</strong> tip
-                </span>{" "}
-                <br />
-                <span>
-                  <strong>Kagiz cinsi :</strong> cinsi
+                  <strong>Kagiz cinsi :</strong> {book.paperType}
                 </span>{" "}
                 <br />
                 <span>
@@ -129,11 +160,14 @@ const BookDetail = () => {
                 <br />
               </div>
               <p>orta rating cixsin ulduzla</p>
-              <p className="stock">
-                Əldə var ya yoxdu o yoxdusa nece gune gelir
-              </p>
               <div className="plus">
-                <p>+ - var</p>
+                <p>
+                  <td className='incDecButton'>
+                    <button className="fas fa-minus" onClick={() => dispatch(decreaseItemQuantity(book.id))} ></button>
+                     <span>1</span>
+                    <button className="fas fa-plus" onClick={() => dispatch(increaseItemQuantity(book.id))}></button>
+                  </td>
+                </p>
                 <span className="sebet">Səbətə at</span>
               </div>
             </div>

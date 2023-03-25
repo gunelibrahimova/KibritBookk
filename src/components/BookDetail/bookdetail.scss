@@ -1,5 +1,8 @@
 #bookdetail {
   padding-top: 20px;
+  .mainImage{
+    width: 90%;
+  }
   .small {
     padding-top: 20px;
     transition: 0.3s ease-in-out;
@@ -13,27 +16,50 @@
     }
   }
   .text {
-    text-align: center;
+    // text-align: center;
+    margin-top: 35px;
     h1 {
-      font-size: 34px;
       line-height: 1.2;
       display: block;
-      color: #333333;
       word-wrap: break-word;
       font-weight: 500;
-      font-family: "Cabin", Arial, Helvetica, sans-serif;
+      color: black;
+      font-family: "Crimson Text", serif;
+      font-size: 32px;
+    }
+    ul {
+      margin-left: -30px;
+      margin-top: 10px;
+      li {
+        list-style: none;
+        font-size: 1.75rem;
+        line-height: 1.8;
+        font-family: "Crimson Text", serif;
+        .stock {
+          margin-left: 3.125rem;
+          margin-bottom: 0;
+          font-size: 0.75rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: #EE2D7A;
+          border: 1px solid;
+          padding: 12px 10px 0px 10px;
+          cursor: pointer;
+        }
+      }
     }
     .price {
       font-weight: 600;
       color: chartreuse;
     }
-    .p {
-      font-size: 14px;
+    .parametrs {
+      font-size: 16px;
       strong {
         color: gray;
       }
     }
     .plus {
+      
       .sebet {
         background-color: #45a963;
         color: white;

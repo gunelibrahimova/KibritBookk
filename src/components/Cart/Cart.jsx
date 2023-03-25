@@ -7,7 +7,9 @@ import './cart.scss'
 const Cart = () => {
 
     const { cart, totalQuantity, totalPrice } = useSelector((state) => state.cart)
+
     const dispatch = useDispatch();
+
 
     useEffect(() => {
         dispatch(getCartTotal());

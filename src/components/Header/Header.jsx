@@ -10,6 +10,9 @@ const Header = () => {
 
   const { cart, totalQuantity, totalPrice } = useSelector((state) => state.cart)
 
+  const { favories, totalQuantityFavories, totalPriceFavories } = useSelector((state) => state.favories)
+  
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,7 +32,7 @@ const Header = () => {
                 <h5 style={{ color: "black" }}>Əsas Səhifə</h5>
               </Link>
               <img width={100} height="100" src={logo} alt="" />
-              <Link to="/allbook" style={{ textDecoration: "none", color:"black" }}>
+              <Link to="/allbook" style={{ textDecoration: "none", color: "black" }}>
                 <h5>Bütün məhsullar</h5>
               </Link>
             </div>
@@ -39,9 +42,12 @@ const Header = () => {
               <Link to="/auth">
                 <i class="fa-regular fa-user" style={{ color: "black" }}></i>
               </Link>
+              <Link to="/favories">
+                <i class="fa-solid fa-heart" style={{ color: "red", marginLeft: "10px" }}><sup style={{color : "black", marginLeft: "1px"}}>{totalQuantityFavories ? totalQuantityFavories : ""}</sup></i>
+              </Link>
               <Link to="/cart" style={{ textDecoration: "none" }}>
                 <i class="fa-solid fa-cart-shopping car price"></i>
-                <span className='price'>{totalQuantity}məhsul</span><span className="price">/{totalPrice}₼</span>
+                <span className='price'>{totalQuantity < 0 ? 0 : totalQuantity}məhsul</span><span className="price">/{totalPrice < 0 ? 0 : totalPrice}₼</span>
               </Link>
             </div>
           </div>

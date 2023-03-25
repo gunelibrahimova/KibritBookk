@@ -26,7 +26,7 @@ const cartSlice = createSlice({
             if (find >= 0) {
                 (state.cart[find].quantity += 1);
             } else {
-                state.cart.push(action.payload);
+                state.cart.push({...action.payload, quantity:1});
             }
             // Yerel depolamayı güncelle
             localStorage.setItem('cart', JSON.stringify(state.cart));

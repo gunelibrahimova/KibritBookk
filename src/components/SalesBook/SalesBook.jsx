@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { addToCart, fetchBook } from "../../redux/Reducer/cartSlice";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { addToFavories } from "../../redux/Reducer/favoriteSlice";
 
 const SalesBook = () => {
 
@@ -18,11 +19,15 @@ const SalesBook = () => {
 
   const data = useSelector(state => state.cart.data.message)
 
+  const favori = useSelector(state => state.favories.data.message)
+
+  console.log(favori);
+
   useEffect(() => {
     dispatch(fetchBook())
   }, [])
 
-  
+
 
   const notify = () =>
     toast(
@@ -68,7 +73,7 @@ const SalesBook = () => {
                                   <i className="fa-solid fa-eye icon"></i>
                                 </Link>
                                 <br />
-                                <i className="fa-solid fa-heart icon"></i>
+                                <i className="fa-solid fa-heart icon" onClick={() => dispatch(addToFavories(book))}></i>
                                 <br />
                                 <i className="fa-solid fa-bag-shopping icon" onClick={() => dispatch(addToCart(book))}></i>
                               </div>
